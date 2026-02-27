@@ -4361,7 +4361,7 @@ export default function CanvexPage() {
     } catch (error) {
       if (mediaLibraryRequestTokenRef.current !== requestToken) return
       console.error('Load media library failed', error)
-      setMediaLibraryError(t('mediaLibraryLoadFailed', { defaultValue: '素材库加载失败，请稍后重试。' }))
+      setMediaLibraryError(t('mediaLibraryLoadFailed', { defaultValue: '媒体素材库加载失败，请稍后重试。' }))
     } finally {
       if (mediaLibraryRequestTokenRef.current === requestToken) {
         setMediaLibraryLoading(false)
@@ -4512,7 +4512,7 @@ export default function CanvexPage() {
       },
     )
     if (!created) {
-      setMediaLibraryError(t('mediaLibraryInsertFailed', { defaultValue: '素材插入失败，请重试。' }))
+      setMediaLibraryError(t('mediaLibraryInsertFailed', { defaultValue: '媒体素材插入失败，请重试。' }))
     }
   }, [activeSceneId, t])
 
@@ -4527,7 +4527,7 @@ export default function CanvexPage() {
       item.id,
     )
     if (!created) {
-      setMediaLibraryError(t('mediaLibraryInsertFailed', { defaultValue: '素材插入失败，请重试。' }))
+      setMediaLibraryError(t('mediaLibraryInsertFailed', { defaultValue: '媒体素材插入失败，请重试。' }))
     }
   }, [activeSceneId, t])
 
@@ -5369,6 +5369,12 @@ export default function CanvexPage() {
                   updateSelectedEditSelection()
                 }}
               >
+                <DefaultSidebar.Trigger
+                  tab="canvex-media"
+                  title={t('mediaLibraryTitle', { defaultValue: '媒体素材库' })}
+                  aria-label={t('mediaLibraryTitle', { defaultValue: '媒体素材库' })}
+                  icon={<IconPhoto size={14} />}
+                />
                 <DefaultSidebar
                   className="canvex-media-sidebar"
                   onStateChange={(state) => {
@@ -5382,8 +5388,8 @@ export default function CanvexPage() {
                   <DefaultSidebar.TabTriggers>
                     <Sidebar.TabTrigger
                       tab="canvex-media"
-                      title={t('mediaLibraryTitle', { defaultValue: '素材库' })}
-                      aria-label={t('mediaLibraryTitle', { defaultValue: '素材库' })}
+                      title={t('mediaLibraryTitle', { defaultValue: '媒体素材库' })}
+                      aria-label={t('mediaLibraryTitle', { defaultValue: '媒体素材库' })}
                     >
                       <IconPhoto size={13} />
                     </Sidebar.TabTrigger>
@@ -5392,8 +5398,7 @@ export default function CanvexPage() {
                     <div className="canvex-media-sidebar__panel">
                       <div className="canvex-media-sidebar__header">
                         <div className="canvex-media-sidebar__title">
-                          <IconPhoto size={14} />
-                          <span>{t('mediaLibraryTitle', { defaultValue: '素材库' })}</span>
+                          <span>{t('mediaLibraryTitle', { defaultValue: '媒体素材库' })}</span>
                         </div>
                         <button
                           type="button"
@@ -5472,7 +5477,7 @@ export default function CanvexPage() {
                                                       <div className="canvex-media-item__preview">
                                                         <img
                                                           src={item.url}
-                                                          alt={item.filename || t('mediaLibraryImageAlt', { defaultValue: '素材图片' })}
+                                                          alt={item.filename || t('mediaLibraryImageAlt', { defaultValue: '媒体图片' })}
                                                           className="canvex-media-item__thumb"
                                                         />
                                                       </div>
@@ -5550,7 +5555,7 @@ export default function CanvexPage() {
                         </div>
                       ) : (
                         <div className="canvex-media-sidebar__empty">
-                          {t('mediaLibraryEmpty', { defaultValue: '暂无素材。' })}
+                          {t('mediaLibraryEmpty', { defaultValue: '暂无媒体素材。' })}
                         </div>
                       )}
                     </div>

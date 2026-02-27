@@ -202,13 +202,16 @@
   --button-gray-2: var(--foreground);
   --button-gray-3: var(--foreground);
   --button-hover-bg: var(--foreground);
+  --button-active-bg: var(--foreground);
+  --button-selected-bg: var(--foreground);
+  --button-hover-color: #fff;
   --button-active-border: transparent;
   --color-surface-primary-container: var(--foreground);
-  --color-on-primary-container: var(--background);
+  --color-on-primary-container: #fff;
   --color-primary: var(--foreground);
   --color-primary-light: var(--foreground);
   --color-primary-light-darker: var(--foreground);
-  --default-border-color: transparent;
+  --default-border-color: var(--foreground);
   --icon-fill-color: var(--foreground);
   --keybinding-color: var(--foreground);
   --island-bg-color: var(--background);
@@ -247,9 +250,9 @@
 .canvex-host .excalidraw .dropdown-menu-button.active,
 .canvex-host .excalidraw .dropdown-select:hover,
 .canvex-host .excalidraw .dropdown-select:active {
-  background-color: var(--foreground);
-  color: var(--background);
-  border-color: var(--foreground);
+  background-color: var(--button-hover-bg, var(--island-bg-color));
+  color: var(--button-hover-color, var(--button-color, var(--text-primary-color, inherit)));
+  border-color: var(--button-hover-border, var(--button-border, var(--default-border-color)));
 }
 
 .canvex-host .excalidraw .dropdown-menu .dropdown-menu-item {
@@ -268,16 +271,38 @@
 .canvex-host .excalidraw .dropdown-menu .dropdown-menu-item--selected,
 .canvex-host .excalidraw .dropdown-menu.manual-hover .dropdown-menu-item--hovered,
 .canvex-host .excalidraw .dropdown-menu.manual-hover .dropdown-menu-item--selected {
-  background-color: var(--foreground) !important;
-  color: var(--background);
+  background-color: var(--button-selected-bg, var(--color-surface-primary-container)) !important;
+  color: var(--button-hover-color, #fff);
   border-color: transparent;
-  --icon-fill-color: var(--background);
+  --icon-fill-color: var(--button-hover-color, #fff);
 }
 
 .canvex-host .excalidraw .dropdown-menu .dropdown-menu-item:hover svg,
 .canvex-host .excalidraw .dropdown-menu .dropdown-menu-item:active svg,
 .canvex-host .excalidraw .dropdown-menu .dropdown-menu-item--selected svg {
-  color: currentColor;
+  color: var(--button-hover-color, #fff);
+  fill: none;
+}
+
+.canvex-host .excalidraw .App-menu__left .dropdown-menu-button:hover svg,
+.canvex-host .excalidraw .App-menu__left .dropdown-menu-button:active svg,
+.canvex-host .excalidraw .App-menu__left .dropdown-menu-button.active svg,
+.canvex-host .excalidraw .App-menu__left .dropdown-select:hover svg,
+.canvex-host .excalidraw .App-menu__left .dropdown-select:active svg,
+.canvex-host .excalidraw .App-menu__left .buttonList label:hover svg,
+.canvex-host .excalidraw .App-menu__left .buttonList button:hover svg,
+.canvex-host .excalidraw .App-menu__left .buttonList .zIndexButton:hover svg,
+.canvex-host .excalidraw .App-menu__left .buttonList label:active svg,
+.canvex-host .excalidraw .App-menu__left .buttonList button:active svg,
+.canvex-host .excalidraw .App-menu__left .buttonList .zIndexButton:active svg,
+.canvex-host .excalidraw .App-menu__left .buttonList label.active svg,
+.canvex-host .excalidraw .App-menu__left .buttonList button.active svg,
+.canvex-host .excalidraw .App-menu__left .buttonList .zIndexButton.active svg,
+.canvex-host .excalidraw .App-menu__left button.standalone:hover svg,
+.canvex-host .excalidraw .App-menu__left button.standalone:active svg,
+.canvex-host .excalidraw .App-menu__left button.standalone.active svg {
+  color: var(--button-hover-color, #fff);
+  fill: none;
 }
 
 .canvex-host .excalidraw .dropdown-menu-button,
@@ -386,7 +411,7 @@
 
 .canvex-host .excalidraw .layer-ui__wrapper__top-right label svg {
   color: currentColor;
-  fill: currentColor;
+  fill: none;
 }
 
 .canvex-host .excalidraw .layer-ui__wrapper__top-right label > div {
@@ -406,40 +431,52 @@
 
 .canvex-host .excalidraw .layer-ui__wrapper__top-right label > div svg {
   color: currentColor;
-  fill: currentColor;
+  fill: none;
 }
 
 .canvex-host .excalidraw .buttonList label,
 .canvex-host .excalidraw .buttonList button,
 .canvex-host .excalidraw .buttonList .zIndexButton {
-  background-color: var(--background);
-  color: var(--foreground);
-  border: none;
+  background-color: var(--button-bg, var(--island-bg-color));
+  color: var(--button-color, var(--color-on-surface));
+  border: 1px solid var(--button-border, var(--default-border-color));
   box-shadow: none;
 }
 
 .canvex-host .excalidraw .buttonList label:hover,
 .canvex-host .excalidraw .buttonList button:hover,
-.canvex-host .excalidraw .buttonList .zIndexButton:hover,
+.canvex-host .excalidraw .buttonList .zIndexButton:hover {
+  background-color: var(--button-hover-bg, var(--island-bg-color));
+  border-color: var(--button-hover-border, var(--button-border, var(--default-border-color)));
+  color: var(--button-hover-color, var(--button-color, var(--text-primary-color, inherit)));
+}
+
 .canvex-host .excalidraw .buttonList label:active,
 .canvex-host .excalidraw .buttonList button:active,
-.canvex-host .excalidraw .buttonList .zIndexButton:active,
+.canvex-host .excalidraw .buttonList .zIndexButton:active {
+  background-color: var(--button-active-bg, var(--island-bg-color));
+  border-color: var(--button-active-border, var(--color-primary-darkest));
+}
+
 .canvex-host .excalidraw .buttonList label.active,
 .canvex-host .excalidraw .buttonList button.active,
-.canvex-host .excalidraw .buttonList .zIndexButton.active,
+.canvex-host .excalidraw .buttonList .zIndexButton.active {
+  background-color: var(--button-selected-bg, var(--color-surface-primary-container));
+  border-color: var(--button-selected-border, var(--color-surface-primary-container));
+  color: var(--button-color, var(--color-on-primary-container));
+}
+
 .canvex-host .excalidraw .buttonList label.active:hover,
 .canvex-host .excalidraw .buttonList button.active:hover,
 .canvex-host .excalidraw .buttonList .zIndexButton.active:hover {
-  background-color: var(--foreground);
-  color: var(--background);
-  --icon-fill-color: var(--background);
+  background-color: var(--button-selected-hover-bg, var(--color-surface-primary-container));
 }
 
 .canvex-host .excalidraw .buttonList label svg,
 .canvex-host .excalidraw .buttonList button svg,
 .canvex-host .excalidraw .buttonList .zIndexButton svg {
   color: currentColor;
-  fill: currentColor;
+  fill: none;
 }
 
 .canvex-host .excalidraw .disable-zen-mode {
